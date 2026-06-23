@@ -1,0 +1,292 @@
+/* --- Core Reset & Variables --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+:root {
+    --bg-color: #0B0F14;
+    --surface-color: rgba(22, 31, 44, 0.7);
+    --surface-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #FFFFFF;
+    --text-secondary: #7F8C99;
+    --accent-gradient: linear-gradient(135deg, #00B4DB, #0083B0);
+    --accent-glow: rgba(0, 180, 219, 0.3);
+    --font-main: 'Inter', sans-serif;
+    --header-height: 70px;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Premium Loading Screen --- */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease, visibility 0.4s;
+}
+
+.loading-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-container {
+    text-align: center;
+}
+
+.premium-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    border-top-color: #00B4DB;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.loader-container p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* --- App Header (Glassmorphism) --- */
+.app-header {
+    height: var(--header-height);
+    background: var(--surface-color);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--surface-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.nav-btn:active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-btn .material-icons-round {
+    font-size: 22px;
+}
+
+.brand-container {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin-left: 12px;
+}
+
+.brand-logo {
+    background: var(--accent-gradient);
+    font-weight: 700;
+    font-size: 13px;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px var(--accent-glow);
+    margin-right: 12px;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-container h1 {
+    font-size: 16px;
+    font-weight: 600;
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.title-container .subtitle {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 1px;
+}
+
+/* --- Reading Progress Bar --- */
+.progress-container {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.05);
+    z-index: 101;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--accent-gradient);
+    box-shadow: 0 0 8px #00B4DB;
+    transition: width 0.1s ease;
+}
+
+/* --- PDF Document Viewer Canvas Container --- */
+.viewer-container {
+    flex: 1;
+    margin-top: var(--header-height);
+    overflow-y: scroll;
+    overflow-x: auto;
+    padding: 20px 10px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+#pdf-render-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+    align-items: center;
+}
+
+.page-wrapper {
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #11161D;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: transform 0.2s ease;
+}
+
+canvas {
+    display: block;
+    max-width: 100%;
+    height: auto !important; /* Forces aspect ratio compliance */
+}
+
+/* --- Floating Navigation Controller UI --- */
+.bottom-controller-wrapper {
+    position: fixed;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+    pointer-events: none; /* Allows click-through outside the bar */
+}
+
+.bottom-controller {
+    pointer-events: auto; /* Re-enables touch events inside the controller */
+    background: var(--surface-color);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--surface-border);
+    padding: 8px 16px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    transform: translateY(0);
+    transition: transform 0.3s cubic-bezier(0.1, 0.76, 0.55, 0.94);
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.control-btn:active {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(0.92);
+}
+
+.control-btn .material-icons-round {
+    font-size: 22px;
+}
+
+.page-indicator {
+    font-size: 14px;
+    font-weight: 600;
+    min-width: 55px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.page-indicator .divider {
+    color: var(--text-secondary);
+    margin: 0 2px;
+    font-weight: 400;
+}
+
+.vertical-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--surface-border);
+}
+
+/* --- Auto Hide Controller on Scroll Down --- */
+.bottom-controller-wrapper.hide-nav .bottom-controller {
+    transform: translateY(100px);
+}
