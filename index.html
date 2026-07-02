@@ -6,7 +6,7 @@
     <title>Study Book Premium PDF Reader</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
@@ -20,26 +20,13 @@
         </div>
     </div>
 
-    <header class="app-header">
-        <button class="nav-btn" id="btn-back" onclick="window.history.back();" aria-label="Go Back">
-            <span class="material-icons-round">arrow_back_ios_new</span>
-        </button>
-        <div class="brand-container">
-            <span class="brand-logo">SB</span>
-            <div class="title-container">
-                <h1 id="pdf-title">Loading PDF...</h1>
-                <span class="subtitle">Study Book Premium</span>
-            </div>
-        </div>
-        <button class="nav-btn" id="btn-download" aria-label="Download PDF">
-            <span class="material-icons-round">file_download</span>
-        </button>
-    </header>
+    <!-- Upar ka header poori tarah khatam -->
 
     <div class="progress-container">
         <div id="progress-bar" class="progress-bar"></div>
     </div>
 
+    <!-- PDF Render Container -->
     <main class="viewer-container" id="viewer-container">
         <div id="pdf-render-container"></div>
     </main>
