@@ -1,58 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Study Book Premium PDF Reader</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Library</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0d1117;
+padding:15px;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+}
+
+.card{
+display:flex;
+gap:15px;
+align-items:center;
+background:#161b22;
+border:1px solid #30363d;
+border-radius:18px;
+padding:15px;
+margin-bottom:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.25);
+}
+
+.card img{
+width:80px;
+height:80px;
+border-radius:18px;
+object-fit:cover;
+}
+
+.info{
+flex:1;
+}
+
+.title{
+font-size:18px;
+font-weight:bold;
+color:#fff;
+margin-bottom:5px;
+}
+
+.desc{
+font-size:13px;
+color:#9ca3af;
+margin-bottom:12px;
+line-height:20px;
+}
+
+.buttons{
+display:flex;
+justify-content:space-between;
+}
+
+.buttons a{
+text-decoration:none;
+padding:8px 18px;
+border-radius:10px;
+font-size:13px;
+font-weight:bold;
+color:#fff;
+transition:.3s;
+}
+
+.view{
+background:#2563eb;
+}
+
+.download{
+background:#16a34a;
+}
+
+.view:hover{
+background:#1d4ed8;
+}
+
+.download:hover{
+background:#15803d;
+}
+
+</style>
+
 </head>
+
 <body>
 
-    <div id="loading-screen" class="loading-screen">
-        <div class="loader-container">
-            <div class="premium-spinner"></div>
-            <p>Opening Document...</p>
-        </div>
-    </div>
+<div class="container">
 
-    <!-- Upar ka header poori tarah khatam -->
+<!-- PDF 1 -->
 
-    <div class="progress-container">
-        <div id="progress-bar" class="progress-bar"></div>
-    </div>
+<div class="card">
 
-    <!-- PDF Render Container -->
-    <main class="viewer-container" id="viewer-container">
-        <div id="pdf-render-container"></div>
-    </main>
+<img src="images/java.png">
 
-    <div class="bottom-controller-wrapper">
-        <nav class="bottom-controller">
-            <button class="control-btn" id="btn-zoom-out" aria-label="Zoom Out">
-                <span class="material-icons-round">remove</span>
-            </button>
-            
-            <div class="page-indicator">
-                <span id="page-num">0</span> <span class="divider">/</span> <span id="page-count">0</span>
-            </div>
+<div class="info">
 
-            <button class="control-btn" id="btn-zoom-in" aria-label="Zoom In">
-                <span class="material-icons-round">add</span>
-            </button>
+<div class="title">
+Complete Java Notes
+</div>
 
-            <div class="vertical-divider"></div>
+<div class="desc">
+Beginner to Advanced Java Programming PDF.
+</div>
 
-            <button class="control-btn toggle-active" id="btn-fullscreen" aria-label="Toggle Fullscreen">
-                <span class="material-icons-round">fullscreen</span>
-            </button>
-        </nav>
-    </div>
+<div class="buttons">
 
-    <script src="script.js"></script>
+<a class="view"
+href="pdf/java.pdf"
+target="_blank">
+View
+</a>
+
+<a class="download"
+href="pdf/java.pdf"
+download>
+Download
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- PDF 2 -->
+
+<div class="card">
+
+<img src="images/python.png">
+
+<div class="info">
+
+<div class="title">
+Python Complete Guide
+</div>
+
+<div class="desc">
+Python Programming PDF with Examples.
+</div>
+
+<div class="buttons">
+
+<a class="view"
+href="pdf/python.pdf"
+target="_blank">
+View
+</a>
+
+<a class="download"
+href="pdf/python.pdf"
+download>
+Download
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- PDF 3 -->
+
+<div class="card">
+
+<img src="images/android.png">
+
+<div class="info">
+
+<div class="title">
+Android Development
+</div>
+
+<div class="desc">
+Kotlin & Android Studio Full Notes.
+</div>
+
+<div class="buttons">
+
+<a class="view"
+href="pdf/android.pdf"
+target="_blank">
+View
+</a>
+
+<a class="download"
+href="pdf/android.pdf"
+download>
+Download
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </body>
 </html>
